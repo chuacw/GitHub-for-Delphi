@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{72A7D117-7142-49FC-824A-A6C94E01905C}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="GitHubAuth.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="GitHubApp.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="GitHubCLI.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="GitHubAuth">
+        <MSBuild Projects="GitHubAuth.dproj"/>
+    </Target>
+    <Target Name="GitHubAuth:Clean">
+        <MSBuild Projects="GitHubAuth.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GitHubAuth:Make">
+        <MSBuild Projects="GitHubAuth.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GitHubApp">
+        <MSBuild Projects="GitHubApp.dproj"/>
+    </Target>
+    <Target Name="GitHubApp:Clean">
+        <MSBuild Projects="GitHubApp.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GitHubApp:Make">
+        <MSBuild Projects="GitHubApp.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="GitHubCLI">
+        <MSBuild Projects="GitHubCLI.dproj"/>
+    </Target>
+    <Target Name="GitHubCLI:Clean">
+        <MSBuild Projects="GitHubCLI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="GitHubCLI:Make">
+        <MSBuild Projects="GitHubCLI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="GitHubAuth;GitHubApp;GitHubCLI"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="GitHubAuth:Clean;GitHubApp:Clean;GitHubCLI:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="GitHubAuth:Make;GitHubApp:Make;GitHubCLI:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
